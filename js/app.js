@@ -8,7 +8,6 @@ const loadProducts = () => {
 const showProducts = products => {
   products.forEach(product => {
     const rating = `${Math.round(((product.rating.rate / 5) * 100) / 10) * 10}%`;
-    console.log(rating);
     const div = document.createElement("div");
     div.classList.add("col");
     div.innerHTML = `
@@ -17,7 +16,7 @@ const showProducts = products => {
           <div class="card-body p-2">
               <h6 class="card-title fw-bold">${product.title}</h6>
               <h6 class="card-text text-primary text-capitalize">${product.category}</h6>
-              <small class="card-text fw-bold">US $${product.price}</small>
+              <small class="card-text fw-bold d-block">US $${product.price}</small>
               <div class="stars-outer">
                 <div style="width:${rating}" id="stars-inner" class="stars-inner">
               </div>
@@ -32,14 +31,13 @@ const showProducts = products => {
               </div>
           </div>
       </div>
-
-        `;
+      `;
     document.getElementById("all-products").appendChild(div);
   });
 }
 
 let count = 0;
-const addToCart = (price) => {
+const addToCart = price => {
   count = count + 1;
   updatePrice("price", price);
 
@@ -47,6 +45,7 @@ const addToCart = (price) => {
   document.getElementById("total-Products").innerText = count;
   updateTotal();
 };
+
 
 const loadDetails = id => {
   const url = `https://fakestoreapi.com/products/${id}`

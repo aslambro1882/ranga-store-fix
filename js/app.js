@@ -12,9 +12,9 @@ const showProducts = products => {
     const div = document.createElement("div");
     div.classList.add("col");
     div.innerHTML = `
-      <div id="card" class="card h-100 p-2 bg-light">
-          <img src="${product.image}" class="card-img-top img-fluid h-100 mx-auto d-block rounded" alt="...">
-          <div class="card-body">
+      <div id="card" class="card h-100 bg-light">
+          <img src="${product.image}" class="card-img-top img-fluid p-2 h-100 mx-auto d-block rounded" alt="...">
+          <div class="card-body p-2">
               <h6 class="card-title fw-bold">${product.title}</h6>
               <h6 class="card-text text-primary text-capitalize">${product.category}</h6>
               <small class="card-text fw-bold">US $${product.price}</small>

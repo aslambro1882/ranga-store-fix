@@ -7,7 +7,12 @@ const loadProducts = () => {
 // show all product in UI 
 const showProducts = products => {
   products.forEach(product => {
-    const rating = `${Math.round(((product.rating.rate / 5) * 100) / 10) * 10}%`;
+    const rating = `${Math.round((((product.rating.rate) / 5) * 100))}%`;
+    console.log(product.rating.rate);
+    console.log((((product.rating.rate) / 5) * 100));
+    console.log((Math.round((((product.rating.rate) / 5) * 100)) - 1));
+
+    console.log(rating);
     const div = document.createElement("div");
     div.classList.add("col");
     div.innerHTML = `
@@ -56,8 +61,9 @@ const loadDetails = id => {
 
 const displayDetails = details => {
   const modalBody = document.getElementById('modal-body');
+  modalBody.textContent = '';
   modalBody.innerHTML = `
-    <div class="row">
+    <div id="row" class="row">
       <div class="col-6 col-sm-6">
         <img src="${details.image}" class="img-fluid" alt="...">
       </div>

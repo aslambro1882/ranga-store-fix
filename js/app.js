@@ -7,22 +7,26 @@ const loadProducts = () => {
 // show all product in UI 
 const showProducts = products => {
   products.forEach(product => {
-    console.log(product)
-    const image = product.image;
+    const rating = `${Math.round(((product.rating.rate / 5) * 100) / 10) * 10}%`;
+    console.log(rating);
     const div = document.createElement("div");
     div.classList.add("col");
     div.innerHTML = `
-      <div class="card h-100">
-          <img src="${image}" class="card-img-top img-fluid p-5 w-75 h-75 mx-auto d-block" alt="...">
+      <div id="card" class="card h-100 p-2 bg-light">
+          <img src="${product.image}" class="card-img-top img-fluid h-100 mx-auto d-block rounded" alt="...">
           <div class="card-body">
               <h6 class="card-title fw-bold">${product.title}</h6>
               <h6 class="card-text text-primary text-capitalize">${product.category}</h6>
               <small class="card-text fw-bold">US $${product.price}</small>
-              <p class="card-text">Rating: ${product.rating.rate}  <i class="fas fa-star text-warning"></i></p>
-              <p class="card-text text-secondary">${product.rating.count} Rated this product</p>
+              <div class="stars-outer">
+                <div style="width:${rating}" id="stars-inner" class="stars-inner">
+              </div>
+                <small>${product.rating.rate}</small>
+              </div>
+              <p class="card-text text-secondary"><span class="text-primary">${product.rating.count}</span> Rated this product</p>
           </div>
           <div class="card-footer">
-              <div class="d-lg-flex justify-content-between text-center">
+              <div class="d-xl-flex justify-content-between text-center">
                   <button onclick="addToCart(${product.price})" type="button" class="btn btn-outline-info mb-1">Add to cart</button>
                   <button onclick="loadDetails(${product.id})" type="button" class="btn btn-outline-dark mb-1" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Details</button>
               </div>

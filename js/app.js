@@ -22,9 +22,9 @@ const showProducts = products => {
               <p class="card-text text-secondary">${product.rating.count} Rated this product</p>
           </div>
           <div class="card-footer">
-              <div class="d-flex justify-content-between">
-                  <button onclick="addToCart(${product.id},${product.price})" type="button" class="btn btn-outline-info">Add to cart</button>
-                  <button  type="button" class="btn btn-outline-dark text-decoration-line-through">Details</button>
+              <div class="d-lg-flex justify-content-between text-center">
+                  <button onclick="addToCart(${product.price})" type="button" class="btn btn-outline-info mb-1">Add to cart</button>
+                  <button onclick="loadDetails(${product.id})" type="button" class="btn btn-outline-dark mb-1" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Details</button>
               </div>
           </div>
       </div>
@@ -35,7 +35,7 @@ const showProducts = products => {
 }
 
 let count = 0;
-const addToCart = (id, price) => {
+const addToCart = (price) => {
   count = count + 1;
   updatePrice("price", price);
 
@@ -43,6 +43,31 @@ const addToCart = (id, price) => {
   document.getElementById("total-Products").innerText = count;
   updateTotal();
 };
+
+const loadDetails = id => {
+  const url = `https://fakestoreapi.com/products/${id}`
+  fetch(url)
+    .then(res => res.json())
+    .then(data => displayDetails(data))
+}
+
+const displayDetails = details => {
+  const modalBody = document.getElementById('modal-body');
+  modalBody.innerHTML = `
+    <div class="row">
+      <div class="col-6 col-sm-6">
+        <img src="${details.image}" class="img-fluid" alt="...">
+      </div>
+      <div class="col-6 col-sm-6 mt-2">
+        <h6 class="card-title fw-bold">${details.title}</h6>
+        <small class="card-text text-dark text-capitalize d-block">${details.description}</small>
+        <small class="card-text fw-bold">US $${details.price}</small>
+        <p class="card-text">Rating: ${details.rating.rate}  <i class="fas fa-star text-warning"></i></p>
+        <p class="card-text text-secondary">${details.rating.count} Rated this product</p>
+      </div>
+    </div>
+  `;
+}
 
 const getInputValue = id => {
   const element = document.getElementById(id).innerText;

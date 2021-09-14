@@ -31,9 +31,20 @@
   color: #f8ce0b;
 }
 
+
+
+
+@media only screen and (max-width: 575px) {
+  #details-button{
+    display: none;
+  }
+}
+
 @media only screen and (min-width: 576px) {
   #cart{
     position: fixed;
     right: 0;
   }
+  
 }
+

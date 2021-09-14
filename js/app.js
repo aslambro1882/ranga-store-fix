@@ -34,7 +34,7 @@ const showProducts = products => {
           <div class="card-footer">
               <div class="d-xl-flex justify-content-between text-center">
                   <button onclick="addToCart(${product.price})" type="button" class="btn btn-outline-info mb-1">Add to cart</button>
-                  <button onclick="loadDetails(${product.id})" type="button" class="btn btn-outline-dark mb-1" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Details</button>
+                  <button id="details-button" onclick="loadDetails(${product.id})" type="button" class="btn btn-outline-dark mb-1" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Details</button>
               </div>
           </div>
       </div>

@@ -10,7 +10,7 @@ const showProducts = products => {
   products.forEach(product => {
     // declaring variable for set width stars
     const ratings = product.rating.rate;
-    const starsTotal = 6;
+    const starsTotal = 6.5;
     const starPercentage = (ratings / starsTotal) * 100;
     const starPercentageRounded = `${Math.round((starPercentage / 10) * 10)}%`;
 

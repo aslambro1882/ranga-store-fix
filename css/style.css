@@ -30,3 +30,10 @@
   font-weight: 900;
   color: #f8ce0b;
 }
+
+@media only screen and (min-width: 576px) {
+  #cart{
+    position: fixed;
+    right: 0;
+  }
+}
